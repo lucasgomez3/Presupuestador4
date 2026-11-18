@@ -131,7 +131,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,te
 .line-head.mo,.line.mo{grid-template-columns:minmax(0,1fr) 78px 70px 124px 112px 32px}
 .line-head{margin-top:12px;padding-bottom:6px;border-bottom:1px solid var(--line);font-size:12px;font-weight:500;color:var(--muted)}
 .line{padding:6px 0;border-bottom:1px solid var(--line)}
-.line .lbl,.crow .lbl{display:none}
+.line .lbl{display:none}
 div.l-desc{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end;min-width:0}
 div.l-desc .f{flex:1 1 140px}
 .side-links{display:flex;flex-wrap:wrap;gap:6px;flex:none;min-width:0}
@@ -163,28 +163,9 @@ div.l-desc .f{flex:1 1 140px}
 .logo-btns{display:flex;gap:8px;flex-wrap:wrap}
 .fallback{width:100%;min-height:150px;margin-top:10px;font:13px/1.4 var(--f-mono);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:10px}
 
-/* Catálogo */
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
 .toolbar input{flex:1 1 220px;width:auto}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.seg button{border:0;background:var(--surface);color:var(--muted);padding:8px 14px;font:600 14px var(--f-body);cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--celeste);color:var(--on-accent)}
-.newitem{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-.newitem .n-name{flex:1 1 260px}
-.newitem .n-unit{flex:0 0 90px}
-.newitem .n-pack{flex:0 0 110px}
-.newitem .n-price{flex:0 0 170px}
-.crow-head,.crow{display:grid;gap:8px;align-items:center}
-.crow-head.ins,.crow.ins{grid-template-columns:minmax(0,1fr) 70px 84px 124px 108px 150px auto}
-.crow-head.mano,.crow.mano{grid-template-columns:minmax(0,1fr) 84px 130px 160px auto}
-.crow-head{margin-top:12px;padding-bottom:6px;border-bottom:1px solid var(--line);font-size:12px;font-weight:500;color:var(--muted)}
-.crow{padding:6px 0;border-bottom:1px solid var(--line)}
-.c-uprice{min-width:0}
-.uprice{display:block;font-family:var(--f-mono);text-align:right;font-variant-numeric:tabular-nums;font-size:13px}
-.c-acts{display:flex;gap:6px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
 .stamp{font-size:12px;color:var(--muted)}
-.stamp.ex,.stamp.warn{color:var(--warn)}
-.stamp small{display:block;font-size:11px;line-height:1.3}
 
 /* Avisos */
 .note{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-top:16px;padding:12px 14px;border:1px dashed var(--warn);border-radius:6px;background:var(--surface)}
@@ -251,8 +232,8 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
   .tabs{flex-wrap:wrap}
   .tabs button{padding:8px 10px}
   input,select{font-size:16px}
-  .line-head,.crow-head{display:none}
-  .line .lbl,.crow .lbl{display:block}
+  .line-head{display:none}
+  .line .lbl{display:block}
   .line.mat{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 32px;grid-template-areas:"desc desc desc x" "qty unit pack pack" "price price price price" "sub sub sub sub";padding:12px 0}
   .line.mo{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.5fr) 32px;grid-template-areas:"desc desc desc x" "qty unit price price" "sub sub sub sub";padding:12px 0}
   .l-desc{grid-area:desc}.l-qty{grid-area:qty}.l-unit{grid-area:unit}.l-pack{grid-area:pack}.l-price{grid-area:price}.l-x{grid-area:x;align-self:end}
@@ -265,9 +246,6 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
   .c-acts{justify-content:flex-start}
   .c-acts .side-links{flex:1 1 100%}
   .c-acts .side-links .ml{flex:1;text-align:center;padding:9px 8px}
-  .crow.ins{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"name name" "unit pack" "price uprice" "stamp acts";padding:12px 0}
-  .crow.mano{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"name name" "unit price" "stamp acts";padding:12px 0}
-  .c-name{grid-area:name}.c-unit{grid-area:unit}.c-pack{grid-area:pack}.c-price{grid-area:price}.c-uprice{grid-area:uprice}.c-stamp{grid-area:stamp}.c-acts{grid-area:acts}
 }
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -290,7 +268,6 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
     <div class="brand"><span class="wires" aria-hidden="true"><i></i><i></i><i></i></span><h1>Presupuestador eléctrico</h1></div>
     <div class="tabs" role="tablist" aria-label="Secciones">
       <button type="button" role="tab" id="tabBtnP" data-tab="p" aria-selected="true" aria-controls="tab-p">Presupuesto</button>
-      <button type="button" role="tab" id="tabBtnC" data-tab="c" aria-selected="false" aria-controls="tab-c">Catálogo de precios</button>
       <button type="button" role="tab" id="tabBtnH" data-tab="h" aria-selected="false" aria-controls="tab-h">Guardados</button>
       <button type="button" role="tab" id="tabBtnN" data-tab="n" aria-selected="false" aria-controls="tab-n">Nube y copias</button>
     </div>
@@ -301,7 +278,7 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
 <main class="wrap">
   <section id="tab-p" role="tabpanel" aria-labelledby="tabBtnP">
     <div id="demoNote" class="note" hidden>
-      <p>Este es un presupuesto de ejemplo con precios de referencia. Cargá tus precios reales en el catálogo antes de usarlo con un cliente.</p>
+      <p>Este es un presupuesto de ejemplo con precios de referencia. Buscá o cargá tus precios reales antes de usarlo con un cliente.</p>
       <div>
         <button type="button" class="btn small primary" id="btnClearDemo">Empezar de cero</button>
         <button type="button" class="btn small" id="btnKeepDemo">Entendido</button>
@@ -332,13 +309,10 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
 
         <details class="panel sec" data-sec="materiales" open>
           <summary><h2 class="h"><span class="stub"></span>Materiales</h2><span class="sec-sum" id="sumMat"></span><i class="chev" aria-hidden="true"></i></summary>
-          <p class="hint">Cargá el precio de la presentación (el rollo, la bobina o la caja) y cuántas unidades trae. La app calcula cuánto cuesta lo que usás. Tocá “ML ↗” o “Google ↗” para ver el precio en una ventana al costado.</p>
+          <p class="hint">Escribí el material y tocá “Buscar precio”: la página busca ofertas en tiendas argentinas y elegís una. También podés cargar a mano el precio de la presentación (el rollo, la bobina o la caja) y cuántas unidades trae; la app calcula cuánto cuesta lo que usás. Si ya usaste ese material antes, te sugiere el nombre y carga el último precio.</p>
           <div class="line-head mat" aria-hidden="true"><span>Descripción</span><span style="text-align:right">Cant. que usás</span><span>Unidad</span><span style="text-align:right">Viene en</span><span style="text-align:right">Precio presentación ($)</span><span style="text-align:right">Costo</span><span></span></div>
           <div id="matList"></div>
-          <div class="adds">
-            <input id="addMat" list="dlMat" placeholder="Agregar insumo del catálogo…" aria-label="Agregar insumo del catálogo" autocomplete="off">
-            <button type="button" class="btn" id="btnBlankMat">+ Línea en blanco</button>
-          </div>
+          <div class="adds"><button type="button" class="btn primary" id="btnBlankMat">+ Agregar material</button></div>
           <p class="info" id="matInfo"></p>
         </details>
 
@@ -347,10 +321,7 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
           <p class="hint">Cobrá por boca, por hora o por trabajo completo: la unidad es libre en cada línea.</p>
           <div class="line-head mo" aria-hidden="true"><span>Tarea</span><span style="text-align:right">Cant.</span><span>Unidad</span><span style="text-align:right">Precio unit. ($)</span><span style="text-align:right">Subtotal</span><span></span></div>
           <div id="moList"></div>
-          <div class="adds">
-            <input id="addMo" list="dlMo" placeholder="Agregar tarea del catálogo…" aria-label="Agregar tarea del catálogo" autocomplete="off">
-            <button type="button" class="btn" id="btnBlankMo">+ Línea en blanco</button>
-          </div>
+          <div class="adds"><button type="button" class="btn primary" id="btnBlankMo">+ Agregar tarea</button></div>
         </details>
       </div>
 
@@ -377,7 +348,6 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
           <dl class="tot" id="tot"></dl>
           <div class="actions">
             <button type="button" class="btn primary" id="btnPdf">Descargar PDF para el cliente</button>
-            <button type="button" class="btn" id="btnSync">Actualizar precios desde el catálogo</button>
             <button type="button" class="btn" id="btnNew">Nuevo presupuesto</button>
           </div>
           <div class="confirm" id="confirmNew" hidden>
@@ -411,30 +381,6 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
     </div>
   </section>
 
-  <section id="tab-c" role="tabpanel" aria-labelledby="tabBtnC" hidden>
-    <div class="panel" style="margin-top:20px">
-      <h2 class="h"><span class="stub"></span>Catálogo de precios</h2>
-      <p class="hint">Tocá “Actualizar precios” para que la página busque los precios en tiendas argentinas (te muestra lo que encontró y vos elegís qué aplicar), o “Buscar precio” en un insumo. También podés cargarlos a mano, tal como los vende la tienda (por ejemplo, un rollo de 100 m) y cuántas unidades trae. Si cambiás un precio, la fecha se actualiza sola.</p>
-      <div class="toolbar">
-        <div class="seg" role="group" aria-label="Tipo de ítem">
-          <button type="button" id="segIns" aria-pressed="true">Insumos</button>
-          <button type="button" id="segMo" aria-pressed="false">Mano de obra</button>
-        </div>
-        <input id="cSearch" type="search" placeholder="Buscar en el catálogo" aria-label="Buscar en el catálogo" autocomplete="off">
-        <button type="button" class="btn primary" id="btnBulk" title="Busca los precios de los insumos en tiendas argentinas">Actualizar precios</button>
-      </div>
-      <div class="newitem">
-        <label class="f n-name"><span class="lbl">Nuevo ítem</span><input id="nName" autocomplete="off" placeholder="Nombre del insumo"></label>
-        <label class="f n-unit"><span class="lbl">Unidad</span><input id="nUnit" autocomplete="off" placeholder="m"></label>
-        <label class="f n-pack" id="nPackWrap"><span class="lbl">Viene en</span><input id="nPack" type="number" min="0" step="any" inputmode="decimal" placeholder="100"></label>
-        <label class="f n-price"><span class="lbl" id="nPriceLbl">Precio presentación ($)</span><input id="nPrice" type="number" min="0" step="any" inputmode="decimal"></label>
-        <button type="button" class="btn primary" id="nAdd">Agregar a insumos</button>
-      </div>
-      <div id="catHead"></div>
-      <div id="catList"></div>
-    </div>
-  </section>
-
   <section id="tab-h" role="tabpanel" aria-labelledby="tabBtnH" hidden>
     <div class="panel" style="margin-top:20px">
       <h2 class="h"><span class="stub brown"></span>Presupuestos guardados</h2>
@@ -450,7 +396,7 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
       <p class="hint">Acá están el guardado en la nube y las copias de seguridad. Cada cambio que hacés se sube solo.</p>
     <div class="backup" id="cloudPanel">
       <h3>Guardar en la nube</h3>
-      <p class="hint" style="margin:0">Guarda el catálogo y los presupuestos en tu propio servidor gratuito (Cloudflare) y los sincroniza entre tu compu y tu celular. Se conecta solo cuando entrás con Google.</p>
+      <p class="hint" style="margin:0">Guarda tus presupuestos en tu propio servidor gratuito (Cloudflare) y los sincroniza entre tu compu y tu celular. Se conecta solo cuando entrás con Google.</p>
       <p class="acct">Cuenta de Google: <b id="acctEmail">—</b></p>
       <div class="row">
         <button type="button" class="btn" id="btnCloudSync">Sincronizar ahora</button>
@@ -473,7 +419,7 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
 
     <div class="backup">
       <h3>Copia de seguridad</h3>
-      <p class="hint" style="margin:0">Además de la nube, podés bajar un archivo. Bajá un archivo con el catálogo y los presupuestos, y cargalo si cambiás de compu o borrás los datos del navegador.</p>
+      <p class="hint" style="margin:0">Además de la nube, podés bajar un archivo. Bajá un archivo con tus presupuestos, y cargalo si cambiás de compu o borrás los datos del navegador.</p>
       <div class="row">
         <button type="button" class="btn" id="btnBackup">Descargar copia</button>
         <button type="button" class="btn" id="btnRestore">Cargar copia</button>
@@ -489,7 +435,7 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
     </div>
   </section>
 
-  <p class="foot">Los presupuestos y el catálogo se guardan solos. <span id="saveState"></span></p>
+  <p class="foot">Los presupuestos se guardan solos. <span id="saveState"></span></p>
 </main>
 
 <dialog class="dlg" id="dlgPrecio" aria-labelledby="prTitle">
@@ -500,15 +446,6 @@ dialog.dlg::backdrop{background:rgba(0,0,0,.55)}
     <p class="info" id="prStatus" role="status"></p>
     <div id="prList"></div>
     <div class="dlg-foot"><span class="stamp" id="prSum"></span><button type="button" class="btn" id="prMed" hidden>Usar la mediana</button></div>
-  </div>
-</dialog>
-<dialog class="dlg" id="dlgBulk" aria-labelledby="bkTitle">
-  <div class="dlg-in">
-    <div class="dlg-head"><h2 class="h" id="bkTitle"><span class="stub"></span>Actualizar precios</h2><button class="x" type="button" data-close aria-label="Cerrar">×</button></div>
-    <p class="hint" id="bkHint"></p>
-    <p class="info" id="bkStatus" role="status"></p>
-    <div id="bkList"></div>
-    <div class="dlg-foot"><button type="button" class="btn" data-close>Cancelar</button><button type="button" class="btn primary" id="bkApply" disabled>Aplicar</button></div>
   </div>
 </dialog>
 <datalist id="dlMat"></datalist>
@@ -575,54 +512,35 @@ function unitPrice(c){return num(c.precio)/(num(c.pack)||1)}
 
 /* ---------- Datos de partida ---------- */
 function seed(){
-  var ins=[
-    ['Cable unipolar 1,5 mm²','m',100,80000],
-    ['Cable unipolar 2,5 mm²','m',100,120000],
-    ['Cable unipolar 4 mm²','m',100,190000],
-    ['Cable tipo taller 3x2,5 mm²','m',50,180000],
-    ['Caño corrugado 3/4"','m',25,11250],
-    ['Caja rectangular embutir 5x10','u',1,900],
-    ['Módulo tomacorriente 10 A','u',1,3500],
-    ['Módulo punto de luz 10 A','u',1,3200],
-    ['Térmica 2x16 A','u',1,9500],
-    ['Térmica 2x25 A','u',1,10500],
-    ['Disyuntor diferencial 2x25 A 30 mA','u',1,38000],
-    ['Tablero embutir 8 módulos','u',1,16000],
-    ['Plafón LED 18 W','u',1,8500],
-    ['Lámpara LED 9 W','u',1,2200],
-    ['Jabalina 5/8" x 1,5 m','u',1,14000],
-    ['Cinta aisladora','u',1,1500]
-  ].map(function(r,i){return {id:'i'+i,tipo:'insumo',nombre:r[0],unidad:r[1],pack:r[2],precio:r[3],fecha:'',ejemplo:true}});
-  var man=[
-    ['Boca de luz o tomacorriente (cañería, cableado y colocación)','boca',25000],
-    ['Colocación de artefacto','u',12000],
-    ['Colocación de tablero con térmicas','u',90000],
-    ['Cambio de térmica o diferencial','u',30000],
-    ['Instalación de jabalina y puesta a tierra','u',80000],
-    ['Detección y reparación de falla','hs',20000],
-    ['Visita y diagnóstico','u',25000],
-    ['Hora de oficial electricista','hs',18000],
-    ['Hora de ayudante','hs',10000]
-  ].map(function(r,i){return {id:'t'+i,tipo:'mano',nombre:r[0],unidad:r[1],precio:r[2],fecha:'',ejemplo:true}});
-  function mat(c,cant){return {id:uid(),catId:c.id,desc:c.nombre,unidad:c.unidad,cant:cant,pack:c.pack,precio:c.precio}}
-  function mo(c,cant){return {id:uid(),catId:c.id,desc:c.nombre,unidad:c.unidad,cant:cant,precio:c.precio}}
+  function mat(d,u,cant,pack,precio){return {id:uid(),desc:d,unidad:u,cant:cant,pack:pack,precio:precio}}
+  function mo(d,u,cant,precio){return {id:uid(),desc:d,unidad:u,cant:cant,precio:precio}}
   return {
     demo:true,
-    catalogo:ins.concat(man),
     pres:{
       numero:'0001',fecha:todayISO(),cliente:'Cliente de ejemplo',obra:'Cocina: circuito nuevo de tomacorrientes',
       tipo:'Instalación nueva',validez:15,
-      materiales:[mat(ins[1],40),mat(ins[4],25),mat(ins[5],6),mat(ins[6],6),mat(ins[9],1),mat(ins[15],1)],
-      mano:[mo(man[0],6),mo(man[3],1)],
+      materiales:[
+        mat('Cable unipolar 2,5 mm²','m',40,100,120000),
+        mat('Caño corrugado 3/4"','m',25,25,11250),
+        mat('Caja rectangular embutir 5x10','u',6,1,900),
+        mat('Módulo tomacorriente 10 A','u',6,1,3500),
+        mat('Térmica 2x25 A','u',1,1,10500),
+        mat('Cinta aisladora','u',1,1,1500)
+      ],
+      mano:[
+        mo('Boca de luz o tomacorriente (cañería, cableado y colocación)','boca',6,25000),
+        mo('Cambio de térmica o diferencial','u',1,30000)
+      ],
       ajustes:{compra:'prop',margen:25,imprevistos:5,iva:21,ivaOn:true,traslado:0}
     }
   };
 }
-function valid(o){return !!(o&&Array.isArray(o.catalogo)&&o.pres&&Array.isArray(o.pres.materiales)&&Array.isArray(o.pres.mano)&&o.pres.ajustes)}
+function valid(o){return !!(o&&o.pres&&Array.isArray(o.pres.materiales)&&Array.isArray(o.pres.mano)&&o.pres.ajustes)}
 function loadLocal(){try{var r=localStorage.getItem(KEY);if(!r)return null;var o=JSON.parse(r);return valid(o)?o:null}catch(e){return null}}
 function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 function normalize(){
+  delete S.catalogo; // el catálogo ya no existe: se descarta el de datos viejos
   if(!S.empresa||typeof S.empresa!=='object')S.empresa={};
   ['nombre','cuit','tel','email','dir','pie','logo'].forEach(function(k){if(typeof S.empresa[k]!=='string')S.empresa[k]=''});
   if(typeof S.empresa.logoAR!=='number'||!(S.empresa.logoAR>0))S.empresa.logoAR=0;
@@ -733,7 +651,7 @@ function matNote(l){
 function lineHTML(kind,l){
   if(kind==='mat'){
     return '<div class="line mat" data-id="'+esc(l.id)+'">'+
-      '<div class="l-desc"><label class="f"><span class="lbl">Material</span><input data-k="desc" value="'+esc(l.desc)+'" placeholder="Material" aria-label="Descripción" autocomplete="off"></label>'+
+      '<div class="l-desc"><label class="f"><span class="lbl">Material</span><input data-k="desc" list="dlMat" value="'+esc(l.desc)+'" placeholder="Material" aria-label="Descripción" autocomplete="off"></label>'+
         sideLinks(l.desc)+'</div>'+
       '<label class="f l-qty"><span class="lbl">Cant. que usás</span><input data-k="cant" type="number" min="0" step="any" inputmode="decimal" value="'+esc(l.cant)+'" aria-label="Cantidad que usás"></label>'+
       '<label class="f l-unit"><span class="lbl">Unidad</span><input data-k="unidad" value="'+esc(l.unidad)+'" aria-label="Unidad" autocomplete="off"></label>'+
@@ -744,7 +662,7 @@ function lineHTML(kind,l){
     '</div>';
   }
   return '<div class="line mo" data-id="'+esc(l.id)+'">'+
-    '<label class="f l-desc"><span class="lbl">Tarea</span><input data-k="desc" value="'+esc(l.desc)+'" placeholder="Tarea" aria-label="Descripción" autocomplete="off"></label>'+
+    '<label class="f l-desc"><span class="lbl">Tarea</span><input data-k="desc" list="dlMo" value="'+esc(l.desc)+'" placeholder="Tarea" aria-label="Descripción" autocomplete="off"></label>'+
     '<label class="f l-qty"><span class="lbl">Cant.</span><input data-k="cant" type="number" min="0" step="any" inputmode="decimal" value="'+esc(l.cant)+'" aria-label="Cantidad"></label>'+
     '<label class="f l-unit"><span class="lbl">Unidad</span><input data-k="unidad" value="'+esc(l.unidad)+'" aria-label="Unidad" autocomplete="off"></label>'+
     '<label class="f l-price"><span class="lbl">Precio unit. ($)</span><input data-k="precio" type="number" min="0" step="any" inputmode="decimal" value="'+esc(l.precio)+'" aria-label="Precio unitario"></label>'+
@@ -756,7 +674,7 @@ function renderLines(kind){
   var a=arr(kind),el=listEl(kind);
   el.innerHTML=a.length
     ?a.map(function(l){return lineHTML(kind,l)}).join('')
-    :'<p class="empty">'+(kind==='mat'?'Todavía no cargaste materiales. Elegí uno del catálogo o agregá una línea en blanco.':'Todavía no cargaste tareas. Elegí una del catálogo o agregá una línea en blanco.')+'</p>';
+    :'<p class="empty">'+(kind==='mat'?'Todavía no cargaste materiales. Tocá “Agregar material”.':'Todavía no cargaste tareas. Tocá “Agregar tarea”.')+'</p>';
 }
 function refreshRow(kind,row,l){
   if(kind==='mat'){
@@ -778,6 +696,25 @@ function refreshRow(kind,row,l){
     refreshRow(kind,row,l);
     renderTotals();persist();
   });
+  // Al terminar de escribir un nombre que ya usaste antes, trae la unidad y el último precio.
+  el.addEventListener('change',function(e){
+    var inp=e.target.closest('input[data-k="desc"]');if(!inp)return;
+    var row=inp.closest('.line');
+    var l=arr(kind).find(function(x){return x.id===row.dataset.id});if(!l)return;
+    var k=String(l.desc||'').trim().toLowerCase();
+    if(k&&!num(l.precio)){
+      var m=memoria(kind,l.id,true).find(function(x){return String(x.desc).trim().toLowerCase()===k});
+      if(m){
+        l.unidad=m.unidad;l.precio=m.precio;if(kind==='mat')l.pack=m.pack;
+        row.querySelector('[data-k="unidad"]').value=l.unidad||'';
+        row.querySelector('[data-k="precio"]').value=l.precio;
+        var pk=row.querySelector('[data-k="pack"]');if(pk)pk.value=l.pack==null?1:l.pack;
+        refreshRow(kind,row,l);renderTotals();persist();
+        toast('Cargué la unidad y el último precio que usaste.');
+      }
+    }
+    refreshDatalists();
+  });
   el.addEventListener('click',function(e){
     var b=e.target.closest('[data-del]');if(!b)return;
     var id=b.closest('.line').dataset.id,a=arr(kind);
@@ -790,31 +727,14 @@ function addLine(kind,l){
   arr(kind).push(l);
   renderLines(kind);renderTotals();persist();
 }
-function addFromCat(c,kind){
-  var l={id:uid(),catId:c.id,desc:c.nombre,unidad:c.unidad,cant:1,precio:c.precio};
-  if(kind==='mat')l.pack=num(c.pack)||1;
-  addLine(kind,l);
-  toast('Agregado: '+c.nombre);
-}
 function addBlank(kind){
-  var l={id:uid(),catId:'',desc:'',unidad:'u',cant:1,precio:0};
+  var l={id:uid(),desc:'',unidad:'u',cant:1,precio:0};
   if(kind==='mat')l.pack=1;
   addLine(kind,l);
   var rows=listEl(kind).querySelectorAll('.line');
   var last=rows[rows.length-1];
   if(last)last.querySelector('input[data-k="desc"]').focus();
 }
-function wireAdd(sel,tipo,kind){
-  var inp=$(sel);
-  inp.addEventListener('change',function(){
-    var v=inp.value.trim().toLowerCase();if(!v)return;
-    var c=S.catalogo.find(function(x){return x.tipo===tipo&&x.nombre.toLowerCase()===v});
-    if(c){addFromCat(c,kind);inp.value=''}
-    else toast('No encontré ese ítem en el catálogo. Elegilo de la lista o cargalo en la pestaña Catálogo.');
-  });
-}
-wireAdd('#addMat','insumo','mat');
-wireAdd('#addMo','mano','mo');
 $('#btnBlankMat').addEventListener('click',function(){addBlank('mat')});
 $('#btnBlankMo').addEventListener('click',function(){addBlank('mo')});
 
@@ -839,120 +759,25 @@ document.addEventListener('input',function(e){
   }
 });
 
-/* ---------- Catálogo ---------- */
-var cFilter='insumo',cQuery='';
-function stale(c){
-  if(c.ejemplo||!c.fecha)return true;
-  var d=new Date(c.fecha+'T00:00:00');
-  return isFinite(d.getTime())&&Date.now()-d.getTime()>30*86400000;
-}
-function stampHTML(c){
-  if(c.src&&!c.ml&&!c.ejemplo&&c.fecha){
-    return 'Google Shopping · '+esc(c.src.txt||'')+'<small>'+esc(dmy(c.fecha))+(stale(c)?' · hace más de 30 días':'')+'</small>';
-  }
-  if(c.ml){
-    return 'MercadoLibre · '+esc(dmy(c.ml.fecha))+' · '+c.ml.n+(c.ml.n===1?' publicación':' publicaciones')+
-      '<small>Rango '+money.format(c.ml.min)+' a '+money.format(c.ml.max)+(c.ml.conf==='baja'?' · mucha variación, revisalo':'')+'</small>';
-  }
-  return esc(c.ejemplo?'Precio de ejemplo':(c.fecha?'Actualizado '+dmy(c.fecha)+(stale(c)?' · hace más de 30 días':''):'Sin precio cargado'));
-}
-function stampClass(c){return 'stamp c-stamp'+(c.ejemplo?' ex':'')+((c.ml&&c.ml.conf==='baja')||(!c.ejemplo&&c.fecha&&stale(c))?' warn':'')}
-function catHeadHTML(){
-  if(cFilter==='insumo')return '<div class="crow-head ins" aria-hidden="true"><span>Nombre</span><span>Unidad</span><span style="text-align:right">Viene en</span><span style="text-align:right">Precio presentación ($)</span><span style="text-align:right">Por unidad</span><span>Estado</span><span></span></div>';
-  return '<div class="crow-head mano" aria-hidden="true"><span>Nombre</span><span>Unidad</span><span style="text-align:right">Precio unit. ($)</span><span>Estado</span><span></span></div>';
-}
-function catRowHTML(c){
-  var isI=c.tipo==='insumo';
-  var h='<div class="crow '+(isI?'ins':'mano')+'" data-id="'+esc(c.id)+'">'+
-    '<label class="f c-name"><span class="lbl">Nombre</span><input data-c="nombre" value="'+esc(c.nombre)+'" aria-label="Nombre" autocomplete="off"></label>'+
-    '<label class="f c-unit"><span class="lbl">Unidad</span><input data-c="unidad" value="'+esc(c.unidad)+'" aria-label="Unidad" autocomplete="off"></label>';
-  if(isI){
-    h+='<label class="f c-pack"><span class="lbl">La presentación trae</span><input data-c="pack" type="number" min="0" step="any" inputmode="decimal" value="'+esc(c.pack==null?1:c.pack)+'" aria-label="Unidades que trae la presentación"></label>';
-  }
-  h+='<label class="f c-price"><span class="lbl">'+(isI?'Precio de la presentación ($)':'Precio unit. ($)')+'</span><input data-c="precio" type="number" min="0" step="any" inputmode="decimal" value="'+esc(c.precio)+'" aria-label="Precio"></label>';
-  if(isI){
-    h+='<div class="c-uprice"><span class="lbl">Precio por unidad</span><output class="uprice">'+money2.format(unitPrice(c))+'</output></div>';
-  }
-  h+='<span class="'+stampClass(c)+'">'+stampHTML(c)+'</span>'+
-    '<div class="c-acts">'+(isI?sideLinks(c.nombre):'')+
-      '<button class="btn small" type="button" data-add>Al presupuesto</button>'+
-      '<button class="x" type="button" data-cdel aria-label="Quitar del catálogo">×</button></div>'+
-  '</div>';
-  return h;
-}
-function renderCatalog(){
-  var items=S.catalogo.filter(function(c){return c.tipo===cFilter&&c.nombre.toLowerCase().indexOf(cQuery)!==-1});
-  $('#catHead').innerHTML=items.length?catHeadHTML():'';
-  $('#catList').innerHTML=items.length?items.map(catRowHTML).join(''):'<p class="empty">No hay ítems que coincidan. Agregá uno con el formulario de arriba.</p>';
+/* ---------- Sugerencias de lo que ya usaste ---------- */
+// Líneas ya cargadas (en este presupuesto y en los guardados), sin repetir el nombre.
+function memoria(kind,exceptId,soloConPrecio){
+  var seen={},out=[];
+  [S.pres].concat(S.archivo).forEach(function(p){
+    (kind==='mat'?p.materiales:p.mano).forEach(function(l){
+      var k=String(l.desc||'').trim().toLowerCase();
+      if(!k||l.id===exceptId||seen[k])return;
+      if(soloConPrecio&&!(num(l.precio)>0))return;
+      seen[k]=1;out.push(l);
+    });
+  });
+  return out;
 }
 function refreshDatalists(){
-  function opts(t){return S.catalogo.filter(function(c){return c.tipo===t}).map(function(c){return '<option value="'+esc(c.nombre)+'"></option>'}).join('')}
-  $('#dlMat').innerHTML=opts('insumo');
-  $('#dlMo').innerHTML=opts('mano');
+  function opts(kind){return memoria(kind).map(function(l){return '<option value="'+esc(l.desc)+'"></option>'}).join('')}
+  $('#dlMat').innerHTML=opts('mat');
+  $('#dlMo').innerHTML=opts('mo');
 }
-function setFilter(f){
-  cFilter=f;
-  var ins=f==='insumo';
-  $('#segIns').setAttribute('aria-pressed',String(ins));
-  $('#segMo').setAttribute('aria-pressed',String(!ins));
-  $('#nAdd').textContent=ins?'Agregar a insumos':'Agregar a mano de obra';
-  $('#nName').placeholder=ins?'Nombre del insumo':'Nombre de la tarea';
-  $('#nUnit').placeholder=ins?'m':'boca';
-  $('#nPackWrap').hidden=!ins;
-  $('#btnBulk').hidden=!ins;
-  $('#nPriceLbl').textContent=ins?'Precio presentación ($)':'Precio unit. ($)';
-  renderCatalog();
-}
-$('#segIns').addEventListener('click',function(){setFilter('insumo')});
-$('#segMo').addEventListener('click',function(){setFilter('mano')});
-$('#cSearch').addEventListener('input',function(e){cQuery=e.target.value.trim().toLowerCase();renderCatalog()});
-$('#nAdd').addEventListener('click',function(){
-  var name=$('#nName').value.trim();
-  if(!name){toast('Escribí el nombre del ítem.');$('#nName').focus();return}
-  var pr=$('#nPrice').value;
-  var item={id:uid(),tipo:cFilter,nombre:name,unidad:$('#nUnit').value.trim()||'u',precio:num(pr),fecha:pr!==''?todayISO():'',ejemplo:false};
-  if(cFilter==='insumo')item.pack=num($('#nPack').value)||1;
-  S.catalogo.push(item);
-  $('#nName').value='';$('#nUnit').value='';$('#nPack').value='';$('#nPrice').value='';
-  cQuery='';$('#cSearch').value='';
-  renderCatalog();refreshDatalists();persist();
-  toast('Agregado al catálogo: '+name);
-});
-var catEl=$('#catList');
-catEl.addEventListener('input',function(e){
-  var inp=e.target.closest('input[data-c]');if(!inp)return;
-  var row=inp.closest('.crow');
-  var c=S.catalogo.find(function(x){return x.id===row.dataset.id});if(!c)return;
-  var k=inp.dataset.c;
-  if(k==='precio'||k==='pack'){
-    c[k]=num(inp.value);
-    if(k==='precio'){
-      c.fecha=todayISO();c.ejemplo=false;delete c.ml;delete c.src;
-      var st=row.querySelector('.stamp');st.className=stampClass(c);st.innerHTML=stampHTML(c);
-    }
-    var up=row.querySelector('.uprice');if(up)up.textContent=money2.format(unitPrice(c));
-  }else{
-    c[k]=inp.value;
-    if(k==='nombre')setSideLinks(row,c.nombre)
-  }
-  persist();
-});
-catEl.addEventListener('change',refreshDatalists);
-catEl.addEventListener('click',function(e){
-  var row=e.target.closest('.crow');if(!row)return;
-  var c=S.catalogo.find(function(x){return x.id===row.dataset.id});if(!c)return;
-  if(e.target.closest('[data-add]')){addFromCat(c,c.tipo==='insumo'?'mat':'mo');return}
-  var d=e.target.closest('[data-cdel]');
-  if(d){
-    if(!d.classList.contains('armed')){
-      d.classList.add('armed');d.textContent='¿Borrar?';
-      setTimeout(function(){if(d.isConnected){d.classList.remove('armed');d.textContent='×'}},3000);
-      return;
-    }
-    S.catalogo=S.catalogo.filter(function(x){return x.id!==c.id});
-    renderCatalog();refreshDatalists();persist();
-  }
-});
 
 /* ---------- Acciones ---------- */
 var tt=0;
@@ -1159,26 +984,6 @@ function downloadPdf(p){
 }
 $('#btnPdf').addEventListener('click',function(){downloadPdf(S.pres)});
 
-function syncLinesFromCatalog(){
-  var by={};S.catalogo.forEach(function(c){by[c.id]=c});
-  var n=0;
-  S.pres.materiales.forEach(function(l){
-    var c=by[l.catId];if(!c)return;
-    var pk=num(c.pack)||1;
-    if(num(l.precio)!==num(c.precio)||(num(l.pack)||1)!==pk){l.precio=c.precio;l.pack=pk;n++}
-  });
-  S.pres.mano.forEach(function(l){
-    var c=by[l.catId];
-    if(c&&num(l.precio)!==num(c.precio)){l.precio=c.precio;n++}
-  });
-  return n;
-}
-$('#btnSync').addEventListener('click',function(){
-  var n=syncLinesFromCatalog();
-  renderLines('mat');renderLines('mo');renderTotals();persist();
-  toast(n?'Actualicé '+n+(n>1?' líneas':' línea')+' desde el catálogo.':'Los precios ya coinciden con el catálogo.');
-});
-
 /* ---------- Buscar precios en tiendas (Google Shopping, a través del worker) ---------- */
 function median(a){var s=a.slice().sort(function(x,y){return x-y}),n=s.length;return n?(n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2):0}
 // Intenta leer cuántas unidades trae la oferta a partir del título ("rollo 100 m", "caja de 10 unidades").
@@ -1201,34 +1006,27 @@ function errPrecios(e){
   if(e&&e.status===404)m+=' Falta actualizar el código del worker en Cloudflare.';
   return m;
 }
-function applyCat(c,precio,pack,txt){
-  var hoy=todayISO();
-  c.precio=Math.round(precio*100)/100;
-  if(pack)c.pack=pack;
-  c.fecha=hoy;c.ejemplo=false;delete c.ml;
-  c.src={txt:txt||''};
-}
 document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('[data-close]');
   if(b){var d=b.closest('dialog');if(d)d.close()}
 });
 
-/* Una búsqueda, desde un insumo del presupuesto o del catálogo */
 var P={t:null,res:[],run:0};
 function priceTarget(btn){
-  var row=btn.closest('.line.mat,.crow');if(!row)return null;
-  if(row.classList.contains('crow')){
-    var c=S.catalogo.find(function(x){return x.id===row.dataset.id});
-    return c?{kind:'cat',c:c,nombre:c.nombre,unidad:c.unidad||'u',pack:num(c.pack)||1}:null;
-  }
+  var row=btn.closest('.line.mat');if(!row)return null;
   var l=S.pres.materiales.find(function(x){return x.id===row.dataset.id});
-  return l?{kind:'line',l:l,nombre:l.desc,unidad:l.unidad||'u',pack:num(l.pack)||1}:null;
+  return l?{l:l,nombre:l.desc,unidad:l.unidad||'u',pack:num(l.pack)||1}:null;
 }
 function unitOf(r){return r.precio/(num(r.packUsed)||1)}
+// La mediana usa las ofertas donde se pudo leer la presentación; si hay menos de 2, usa todas.
+function medianaRes(){
+  var det=P.res.filter(function(r){return r.det});
+  return median((det.length>=2?det:P.res).map(unitOf));
+}
 function updPrSum(){
   var t=P.t;
   if(!t||!P.res.length){$('#prSum').textContent='';$('#prMed').hidden=true;return}
-  var m=median(P.res.map(unitOf));
+  var m=medianaRes();
   $('#prSum').textContent='Mediana: '+money2.format(m)+' por '+t.unidad+' → '+money.format(m*t.pack)+' por presentación de '+fmtQ(t.pack)+' '+t.unidad;
   $('#prMed').hidden=false;
 }
@@ -1255,30 +1053,23 @@ async function runPrecios(q){
     var rs=await buscarPrecios(q);
     if(run!==P.run)return;
     P.res=rs.map(function(r){var d=detectPack(r.titulo,t.unidad);return {precio:r.precio,tienda:r.tienda,titulo:r.titulo,link:r.link,det:!!d,packUsed:d||t.pack}});
-    P.res.sort(function(a,b){return unitOf(a)-unitOf(b)});
-    st.textContent=P.res.length?P.res.length+' ofertas, ordenadas por precio por '+t.unidad+'.':'No encontré ofertas. Probá con otras palabras.';
+    P.res.sort(function(a,b){return (b.det-a.det)||(unitOf(a)-unitOf(b))});
+    st.textContent=P.res.length?P.res.length+' ofertas. Primero las que dicen cuánto trae, de más barata a más cara por '+t.unidad+'; al final las “supuesto”, que conviene revisar.':'No encontré ofertas. Probá con otras palabras.';
     renderPrecios();
   }catch(e){if(run!==P.run)return;st.textContent=errPrecios(e)}
 }
-function aplicarPrecio(precio,pack,txt){
+function aplicarPrecio(precio,pack){
   var t=P.t;if(!t)return;
   var rounded=Math.round(precio*100)/100;
-  if(t.kind==='cat'){applyCat(t.c,rounded,pack,txt);renderCatalog()}
-  else{
-    t.l.precio=rounded;t.l.pack=pack;
-    var c=S.catalogo.find(function(x){return x.id===t.l.catId});
-    if(c)applyCat(c,rounded,pack,txt);
-    renderLines('mat');renderCatalog();
-  }
-  renderTotals();persist();
+  t.l.precio=rounded;t.l.pack=pack;
+  renderLines('mat');renderTotals();persist();
   $('#dlgPrecio').close();
-  toast('Precio actualizado: '+money.format(rounded)+(t.kind==='line'&&S.catalogo.some(function(x){return x.id===t.l.catId})?' (en el presupuesto y en el catálogo).':'.'));
+  toast('Precio actualizado: '+money.format(rounded)+'.');
 }
 document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('[data-find]');if(!b)return;
   var t=priceTarget(b);if(!t||typeof $('#dlgPrecio').showModal!=='function')return;
   P.t=t;P.res=[];
-  $('#prTitle').innerHTML='<span class="stub"></span>Buscar precio';
   $('#prQ').value=t.nombre||'';
   $('#prStatus').textContent='';
   renderPrecios();
@@ -1296,102 +1087,19 @@ $('#prList').addEventListener('input',function(e){
 $('#prList').addEventListener('click',function(e){
   var b=e.target.closest('[data-use]');if(!b)return;
   var r=P.res[parseInt(b.closest('.pr-row').dataset.i,10)];if(!r)return;
-  aplicarPrecio(r.precio,num(r.packUsed)||1,r.tienda||'una tienda');
+  aplicarPrecio(r.precio,num(r.packUsed)||1);
 });
 $('#prMed').addEventListener('click',function(){
   var t=P.t;if(!t||!P.res.length)return;
-  aplicarPrecio(median(P.res.map(unitOf))*t.pack,t.pack,'mediana de '+P.res.length+' ofertas');
+  aplicarPrecio(medianaRes()*t.pack,t.pack);
 });
 $('#dlgPrecio').addEventListener('close',function(){P.run++});
-
-/* Todos los insumos de una vez: busca, propone y vos marcás cuáles aplicar */
-var B={items:[],run:0,done:0,fin:false,msg:''};
-function bulkEval(it,rs){
-  var c=it.c,us=[],pk0=num(c.pack)||1;
-  rs.forEach(function(r){
-    var pk=detectPack(r.titulo,c.unidad)||(pk0<=1?1:0);
-    if(pk>0)us.push(r.precio/pk);
-  });
-  if(!us.length){it.state='none';return}
-  var m=median(us);
-  var f=us.filter(function(u){return u>=m/3&&u<=m*3});
-  if(f.length)us=f;
-  m=median(us);
-  var lo=Math.min.apply(null,us),hi=Math.max.apply(null,us);
-  it.n=us.length;it.prop=Math.round(m*pk0);
-  it.conf=us.length>=3&&hi<=lo*2?'ok':'baja';
-  it.state='ok';it.checked=it.conf==='ok';
-}
-function renderBulk(){
-  var n=0;
-  $('#bkList').innerHTML=B.items.map(function(it,i){
-    var c=it.c,left,right='',dis=' disabled';
-    if(it.state==='wait'){left='<small>Buscando…</small>'}
-    else if(it.state==='none'){left='<small>No encontré ofertas comparables. Dejo el precio como está.</small>'}
-    else if(it.state==='err'){left='<small class="warn">'+esc(it.msg||'Error')+'</small>'}
-    else{
-      dis='';if(it.checked)n++;
-      var old=num(c.precio),pct=old>0?Math.round((it.prop-old)/old*100):null;
-      left='<small'+(it.conf==='baja'?' class="warn"':'')+'>'+it.n+(it.n===1?' oferta':' ofertas')+(it.conf==='baja'?' · pocas o muy distintas, revisalo':'')+'</small>';
-      right=(old>0&&!c.ejemplo?esc(money.format(old))+' → ':'')+'<b>'+esc(money.format(it.prop))+'</b>'+(pct!=null&&!c.ejemplo?'<small>'+(pct>0?'+':'')+pct+'%</small>':'');
-    }
-    return '<label class="bk-row"><input type="checkbox" data-bk="'+i+'"'+(it.checked?' checked':'')+dis+'><span><b>'+esc(c.nombre)+'</b>'+left+'</span><span class="bk-new">'+right+'</span></label>';
-  }).join('');
-  $('#bkStatus').textContent=B.msg||(B.fin?'Listo. Revisá los precios y aplicá los que te sirvan.':'Buscando '+Math.min(B.done+1,B.items.length)+' de '+B.items.length+'…');
-  $('#bkApply').disabled=!n;
-  $('#bkApply').textContent=n?'Aplicar '+n+(n===1?' precio':' precios'):'Aplicar';
-}
-async function bulkRun(run){
-  var q=B.items.slice();
-  async function w(){
-    while(q.length&&B.run===run){
-      var it=q.shift();
-      try{bulkEval(it,await buscarPrecios(it.c.nombre))}
-      catch(e){
-        if(B.run!==run)return;
-        it.state='err';it.msg=errPrecios(e);
-        if(e&&(e.net||(e.status&&e.status!==400))){B.msg=errPrecios(e);q.length=0}
-      }
-      if(B.run!==run)return;
-      B.done++;renderBulk();
-    }
-  }
-  await Promise.all([w(),w(),w()]);
-  if(B.run===run){B.fin=true;renderBulk()}
-}
-$('#btnBulk').addEventListener('click',function(){
-  var all=S.catalogo.filter(function(c){return c.tipo==='insumo'});
-  if(!all.length){toast('Todavía no hay insumos en el catálogo.');return}
-  var old=all.filter(stale),list=old.length?old:all;
-  B={items:list.map(function(c){return {c:c,state:'wait'}}),run:B.run+1,done:0,fin:false,msg:''};
-  $('#bkHint').textContent=old.length
-    ?'Voy a buscar los '+list.length+(list.length===1?' insumo que tiene':' insumos que tienen')+' precio de ejemplo o de hace más de 30 días. No cambia nada hasta que toques “Aplicar”.'
-    :'Todos tus precios están al día; igual busco los '+list.length+' insumos. No cambia nada hasta que toques “Aplicar”.';
-  renderBulk();
-  $('#dlgBulk').showModal();
-  bulkRun(B.run);
-});
-$('#bkList').addEventListener('change',function(e){
-  var cb=e.target.closest('input[data-bk]');if(!cb)return;
-  var it=B.items[parseInt(cb.dataset.bk,10)];if(it)it.checked=cb.checked;
-  renderBulk();
-});
-$('#bkApply').addEventListener('click',function(){
-  var n=0;
-  B.items.forEach(function(it){if(it.state==='ok'&&it.checked){applyCat(it.c,it.prop,0,'mediana de '+it.n+(it.n===1?' oferta':' ofertas'));n++}});
-  B.run++;$('#dlgBulk').close();
-  if(!n)return;
-  renderCatalog();persist();
-  toast('Actualicé '+n+(n===1?' precio':' precios')+'. Para llevarlos al presupuesto abierto, tocá “Actualizar precios desde el catálogo”.');
-});
-$('#dlgBulk').addEventListener('close',function(){B.run++});
 
 /* ---------- Copias automáticas de seguridad (en este navegador) ---------- */
 var PREV_KEY='presupuestador-previos';
 function resumenDatos(d){
-  var n=(d.catalogo||[]).length,p=(d.archivo||[]).length+(d.pres?1:0);
-  var ej=(d.catalogo||[]).length&&(d.catalogo||[]).every(function(c){return c.ejemplo});
-  return n+' ítems de catálogo'+(ej?' (todos de ejemplo)':'')+', '+p+(p===1?' presupuesto':' presupuestos');
+  var p=(d.archivo||[]).length+(d.pres?1:0);
+  return p+(p===1?' presupuesto':' presupuestos');
 }
 function readPrev(){try{var l=JSON.parse(localStorage.getItem(PREV_KEY)||'[]');return Array.isArray(l)?l:[]}catch(e){return []}}
 function snapshotPrev(motivo){
@@ -1470,12 +1178,12 @@ function adoptRemote(r){
   renderAll();
   return true;
 }
-function hayReales(d){return !!(d&&Array.isArray(d.catalogo)&&d.catalogo.some(function(c){return !c.ejemplo}))}
+function hayReales(d){return !!(d&&valid(d)&&!d.demo)}
 async function resolveConflict(r){
   cloudBusy=false;
   // La nube solo tiene precios de ejemplo y acá hay precios reales: nunca ofrecer reemplazar lo real.
   if(r.datos&&!hayReales(r.datos)&&hayReales(S)){
-    if(confirm('La nube solo tiene precios de ejemplo, y este navegador tiene tus precios reales ('+resumenDatos(S)+').\n\n¿Subir los de ESTE NAVEGADOR a la nube?\n\nAceptar: subir.\nCancelar: no hacer nada por ahora.')){
+    if(confirm('La nube solo tiene el presupuesto de ejemplo, y este navegador tiene tus presupuestos ('+resumenDatos(S)+').\n\n¿Subir los de ESTE NAVEGADOR a la nube?\n\nAceptar: subir.\nCancelar: no hacer nada por ahora.')){
       try{if(r.datos)await guardarCopiaNube('antes de reemplazar la nube',r.datos)}catch(e){}
       cloud.ver=r.version;cloud.dirty=true;saveCloudMeta();cloudHalt=false;await cloudPush();return;
     }
@@ -1499,10 +1207,10 @@ async function resolveConflict(r){
   cloudHalt=true;
   setCloud('Sin sincronizar: hay un conflicto. Tocá “Sincronizar ahora” cuando quieras resolverlo.');
 }
-function soloEjemplo(){return !!S.demo&&!hayReales(S)}
+function soloEjemplo(){return !!S.demo}
 async function cloudPush(){
   if(!cloudOn()||cloudHalt)return;
-  if(soloEjemplo()){setCloud('No se sube nada todavía: solo hay precios de ejemplo. Cargá tus precios y se sube solo.');return}
+  if(soloEjemplo()){setCloud('No se sube nada todavía: solo está el presupuesto de ejemplo. Empezá uno nuevo y se sube solo.');return}
   if(cloudBusy){clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudPush,1500);return}
   cloudBusy=true;var rev=cloudRev;
   try{
@@ -1554,7 +1262,7 @@ document.addEventListener('visibilitychange',function(){
 
 /* ---------- Copias en la nube ---------- */
 var copiasList=[],copiasRecientes=[];
-function copiaLabel(c){var r=c.r||{};return hhmm(c.t)+' · '+(c.m||'copia')+(c.r?' · '+r.items+' ítems, '+r.pres+(r.pres===1?' presupuesto':' presupuestos'):'')}
+function copiaLabel(c){var r=c.r||{};return hhmm(c.t)+' · '+(c.m||'copia')+(r.pres!=null?' · '+r.pres+(r.pres===1?' presupuesto':' presupuestos'):'')}
 function renderCopias(){
   var sel=$('#copiasSel'),on=cloudOn();
   sel.innerHTML=!on?'<option value="">Conectá la nube para ver las copias</option>'
@@ -1630,7 +1338,7 @@ $('#fileRestore').addEventListener('change',function(e){
     var o=null;
     try{o=JSON.parse(String(r.result));if(o&&o.app==='presupuestador-electrico'&&o.datos)o=o.datos}catch(err){o=null}
     if(!valid(o)){toast('El archivo no es una copia válida de esta página.');return}
-    if(!confirm('Esto reemplaza el catálogo y el presupuesto actuales por los del archivo. ¿Seguir?'))return;
+    if(!confirm('Esto reemplaza tus presupuestos actuales por los del archivo. ¿Seguir?'))return;
     snapshotPrev('antes de cargar una copia');
     S=o;S.demo=false;normalize();
     renderAll();persist();
@@ -1725,7 +1433,7 @@ $('#btnKeepDemo').addEventListener('click',function(){S.demo=false;$('#demoNote'
 
 /* ---------- Pestañas ---------- */
 function showTab(t){
-  ['p','c','h','n'].forEach(function(k){
+  ['p','h','n'].forEach(function(k){
     $('#tab-'+k).hidden=k!==t;
     var b=$('[data-tab="'+k+'"]');
     b.setAttribute('aria-selected',String(k===t));
@@ -1831,7 +1539,7 @@ function startAuth(){
 
 /* ---------- Inicio ---------- */
 function renderAll(){
-  renderMeta();renderLines('mat');renderLines('mo');renderTotals();renderCatalog();refreshDatalists();renderHistory();renderEmpresa();
+  renderMeta();renderLines('mat');renderLines('mo');renderTotals();refreshDatalists();renderHistory();renderEmpresa();
   $('#demoNote').hidden=!S.demo;
 }
 renderPrev();

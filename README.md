@@ -12,7 +12,6 @@ Página para armar presupuestos de instalaciones y reparaciones eléctricas. Cad
 
 - Para entrar hay que **iniciar sesión con una cuenta de Google**. Sin eso solo se ve la pantalla de entrada.
 - En **Presupuesto**, cada bloque (Datos del trabajo, Materiales, Mano de obra, Ajustes, Totales) se abre y se cierra tocando su título. Cerrado muestra un resumen a la derecha (por ejemplo, el costo de los materiales). La página recuerda cuáles dejaste cerrados.
-- **Catálogo de precios**: insumos y mano de obra.
 - **Guardados**: todos tus presupuestos.
 - **Nube y copias**: guardado en la nube, copias en la nube y copia de seguridad en archivo.
 
@@ -47,12 +46,13 @@ La página busca precios en Google Shopping Argentina (incluye MercadoLibre y ot
 
 1. Creá una cuenta en https://serper.dev y copiá tu **API key**.
 2. En Cloudflare, en tu worker, **Settings**, **Variables and Secrets**, agregá `SERPER_API_KEY` (tipo **Secret**) con esa clave y hacé **Deploy**.
-3. Listo: en la página aparece **Buscar precio** en cada insumo y **Actualizar precios** en el catálogo.
+3. Listo: en la página aparece **Buscar precio** en cada línea de material.
 
 Cómo se usa:
 
-- **Actualizar precios** (Catálogo, Insumos): busca todos los insumos que tienen precio de ejemplo o de hace más de 30 días, propone un precio (la mediana de las ofertas comparables) y vos marcás cuáles aplicar. No cambia nada hasta que tocás **Aplicar**.
-- **Buscar precio** (en un insumo, del catálogo o del presupuesto): muestra las ofertas ordenadas por precio por unidad. La página intenta leer cuántas unidades trae cada oferta (por ejemplo, "rollo 100 m"); si no puede, supone lo que cargaste en "Viene en". Corregí "Trae" si hace falta y tocá **Usar**.
+- En **Materiales**, tocá **Agregar material**, escribí el nombre y tocá **Buscar precio**. Se abre una ventana con las ofertas de tiendas argentinas, ordenadas por precio por unidad.
+- La página intenta leer cuántas unidades trae cada oferta (por ejemplo, "rollo 100 m"); si no puede, supone lo que cargaste en "Viene en" y lo marca como "supuesto". Corregí **Trae** si hace falta y tocá **Usar**, o **Usar la mediana** para tomar el precio típico.
+- No hay catálogo de precios: cada material guarda su precio en el presupuesto. Si volvés a escribir un material que ya usaste antes (en este presupuesto o en uno guardado), la página lo sugiere y, al terminar de escribirlo, carga la unidad y el último precio. Después podés actualizarlo con **Buscar precio**.
 - Las búsquedas se guardan 12 horas en el worker, así que repetir una no gasta consultas.
 - Los precios de Google Shopping son de referencia: a veces el título no dice la presentación. Por eso siempre elegís vos.
 
@@ -67,7 +67,7 @@ Cómo se usa:
 
 Con la app de Google en **Prueba**, ya entran solo los mails que cargaste como usuarios de prueba. Además, el worker puede limitar todavía más: si agregás la variable `ALLOWED_EMAILS` con una lista de mails separados por coma (por ejemplo `lucas@gmail.com,socio@gmail.com`), solo entran esos. Se cambia desde Cloudflare, sin tocar la página. Si la dejás vacía o no existe, entra cualquier cuenta que Google deje pasar.
 
-Tené en cuenta que todas las cuentas que entran (vos y tus socios) ven **los mismos datos** (el mismo catálogo y los mismos presupuestos, con los nombres de tus clientes). Si no querés eso, cargá `ALLOWED_EMAILS` con tu mail.
+Tené en cuenta que todas las cuentas que entran (vos y tus socios) ven **los mismos datos** (los mismos presupuestos, con los nombres de tus clientes). Si no querés eso, cargá `ALLOWED_EMAILS` con tu mail.
 
 ## Sesión de Google
 
@@ -83,15 +83,15 @@ Tené en cuenta que todas las cuentas que entran (vos y tus socios) ven **los mi
 - Al volver a la página desde otra app, trae lo más nuevo de la nube si vos no tenés cambios sin subir.
 - Si cambiaste algo en dos dispositivos sin sincronizar, la página te pregunta qué versión quedarte. No mezcla los datos: gana una de las dos.
 - Si no hay internet, los cambios quedan en el navegador y se suben después.
-- Si la nube está vacía y en este navegador solo hay precios de ejemplo, no se sube nada hasta que cargues tus precios.
+- Si la nube está vacía y en este navegador solo está el presupuesto de ejemplo, no se sube nada hasta que empieces uno nuevo.
 
-**Al entrar por primera vez, empezá por el dispositivo que tiene tu catálogo real.** En el segundo dispositivo, si la nube ya tiene tus precios reales, se cargan solos.
+**Al entrar por primera vez, empezá por el dispositivo que tiene tus presupuestos reales.** En el segundo dispositivo, si la nube ya tiene tus presupuestos, se cargan solos.
 
 ## Copias en la nube
 
-Se ven en **Nube y copias**, **Copias en la nube**:
+Las copias guardan solo los presupuestos (y los datos de la empresa). Se ven en **Nube y copias**, **Copias en la nube**:
 
-- **Automáticas:** el servidor guarda una copia de lo que va a reemplazar, como máximo una cada 6 horas. Si un cambio quita datos (menos precios reales, menos ítems o menos presupuestos), guarda una de inmediato, con un mínimo de 10 minutos entre una y otra.
+- **Automáticas:** el servidor guarda una copia de lo que va a reemplazar, como máximo una cada 6 horas. Si un cambio quita datos (menos presupuestos), guarda una de inmediato, con un mínimo de 10 minutos entre una y otra.
 - **Manuales:** **Guardar copia ahora**.
 - **Antes de reemplazar la nube:** si elegís subir los datos de un navegador encima de los de la nube, la página guarda antes lo que había en la nube.
 - **Recuperar:** elegí una copia y tocá **Recuperar esta copia**. Lo que tenías se guarda antes como otra copia.
@@ -120,5 +120,6 @@ En **Nube y copias** podés **Descargar copia** (un archivo `.json`) y **Cargar 
 
 - **No probé contra Google ni Cloudflare reales.** Probé el worker con tokens de Google firmados de prueba y un KV simulado, y la página en un navegador con un botón de Google simulado. Si algo falla al entrar, el mensaje de la pantalla dice el motivo.
 - KV puede tardar hasta un minuto en reflejar un cambio en otras ubicaciones del mundo. Si sincronizás dos dispositivos con pocos segundos de diferencia, puede aparecer un aviso de conflicto de más.
-- Los precios de ejemplo que trae la página son inventados. Reemplazalos por los reales.
+- El presupuesto de ejemplo que trae la página tiene precios inventados. Empezá uno nuevo para usar la página.
+- Si venías usando una versión con catálogo, el catálogo se descarta al abrir la página. Las copias de la nube anteriores todavía lo conservan, pero ya no se usa.
 - Workers KV gratis permite 1.000 escrituras y 100.000 lecturas por día, y 1 GB de datos. Los límites pueden cambiar.

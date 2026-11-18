@@ -1,5 +1,5 @@
 // Service worker del Presupuestador. Subí un número a VERSION cada vez que cambies archivos de la lista.
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = 'presupuestador-' + VERSION;
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
